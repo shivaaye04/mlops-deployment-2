@@ -1,9 +1,13 @@
-import mlflow
 import os
+import pickle
 
-# Environment variable se URL uthayega, nahi toh local IP use karega
-tracking_uri = os.getenv("MLFLOW_TRACKING_URI", "http://10.128.62.53:5000")
-mlflow.set_tracking_uri(tracking_uri)
+# Environment variable backup ke liye
+tracking_uri = os.getenv("MLFLOW_TRACKING_URI", "./mlruns")
 
-model = mlflow.pyfunc.load_model("models:/MyModel/1")
-print("Model loaded successfully")
+# Direct model.pkl file se model load ho raha hai
+try:
+    with open("model.pkl", "rb") as f:
+        model = pickle.load(f)
+    print("Model loaded successfully")
+except Exception as e:
+    print(f"Error loading model: {e}")
