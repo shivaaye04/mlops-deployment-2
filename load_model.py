@@ -1,10 +1,9 @@
-import os
+import mlflow
 import pickle
 
 # Environment variable backup ke liye
-tracking_uri = os.getenv("MLFLOW_TRACKING_URI", "./mlruns")
+model = mlflow.pyfunc.load_model("mlartifacts")
 
-# Direct model.pkl file se model load ho raha hai
 try:
     with open("model.pkl", "rb") as f:
         model = pickle.load(f)
