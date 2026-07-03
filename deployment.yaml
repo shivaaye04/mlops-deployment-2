@@ -13,8 +13,14 @@ spec:
         app: mlops-deployment
     spec:
       containers:
-      - name: mlops-deployment
-        image: shivaaye04/mlops-deployment-2:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8000
+        - name: mlops-deployment
+          image: shivaaye04/mlops-deployment-2:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 5

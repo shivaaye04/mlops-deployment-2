@@ -37,7 +37,7 @@ jobs:
           key: ${{ secrets.AWS_SSH_KEY }}
           script: |
             cd /home/ubuntu/mlops-deployment-2
-            git pull 
+            git pull origin main
 
             sudo k3s kubectl apply -f deployment.yaml
             sudo k3s kubectl apply -f service.yaml
