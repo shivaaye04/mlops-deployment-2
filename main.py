@@ -12,4 +12,4 @@ def home():
 
 @app.get("/predict")
 def predict():
-    return {"prediction": "Model prediction will come here"}
+    return {"prediction": "Model prediction will come here"} 
